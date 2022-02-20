@@ -17,7 +17,7 @@ def health():
 @app.route('/makeGif', methods=['GET'])
 def makeGif():
 # def makeGif(inputstart,inputend,inputzoom,inputlat,inputlon,inputspeed):
-    token = '5221675436:AAF-i3OIWzf4GCbLvRBonSKSqkSqFMcCIVk'
+    token = token
     chrome_options = Options() 
     chrome_options.add_argument('--headless')
     driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=chrome_options)
