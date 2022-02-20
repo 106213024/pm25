@@ -23,9 +23,9 @@ def makeGif():
     driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=chrome_options)
     driver.get(f"https://www.taichuangaiot.org/")
     elem = driver.find_element_by_id("id")
-    elem.send_keys('penny2')
+    elem.send_keys(id)
     elem = driver.find_element_by_id("pwd")
-    elem.send_keys('-.048?LSZhij') #++048BKM[lrv')        
+    elem.send_keys(pwd)        
     time.sleep(1)
     button = driver.find_element_by_class_name('btn.btn-primary') # 登入
     button.click()  
