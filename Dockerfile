@@ -2,7 +2,7 @@ FROM python:3.8
 LABEL maintainer="ying"
 COPY . /app
 ENV TZ Asia/Taipei
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+RUN wget --no-check-certificate -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     pip install update && \
     pip install google-chrome-stable fonts-arphic-ukai && \
