@@ -57,7 +57,6 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__API__AUTH_BACKEND: 'airflow.api.auth.backend.basic_auth'
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
-    - "POSTGRES_HOST_AUTH_METHOD=trust"
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
@@ -84,17 +83,7 @@ services:
       interval: 5s
       retries: 5
     restart: always
-  # db:
-  #   image: postgres:13
-  #   restart: always
-  #   networks:
-  #     - djangonetwork
-  #   environment:
-  #     POSTGRES_PASSWORD: airflow
-  #     POSTGRES_USER: airflow
-  #     POSTGRES_DB: postgres
-  #   ports:
-  #     - "5432:5432"
+
   redis:
     image: redis:latest
     expose:
@@ -121,8 +110,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    environment:
-      TZ=Asia/Taipei
 
   airflow-scheduler:
     <<: *airflow-common
@@ -278,25 +265,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-  
-  selenium-hub:
-    image: selenium/hub:4.1.1-20211217
-    container_name: selenium-hub
-    ports:
-      - "4442:4442"
-      - "4443:4443"
-      - "4444:4444"
-  chrome:
-    image: selenium/node-chrome:4.1.1-20211217
-    shm_size: 2gb
-    depends_on:
-      - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
 volumes:
   postgres-db-volume:
-# networks:
-#   djangonetwork:
-#     driver: bridge
