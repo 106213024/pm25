@@ -1,0 +1,14 @@
+Flask
+matplotlib
+numpy
+pandas
+Pillow
+psycopg2-binary
+pytz
+SQLAlchemy
+geopandas
+folium
+selenium
+celery
+redis
+clickhouse-driver
