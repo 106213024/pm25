@@ -4,7 +4,7 @@ COPY . /app
 ENV TZ Asia/Taipei
 ENV DBUSER web
 ENV DBPASSWORD password
-RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
 RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
 RUN apt-get update -qqy 
 RUN apt-get -qqy install google-chrome-stable fonts-arphic-ukai 
